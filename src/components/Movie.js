@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import './Movie.css';
+import { Link } from "react-router-dom";
 
 function Movie({title, year, summary, poster, genres}) {
     return (
         <div className="movie">
+            <Link to="/movie-detail" state={{ year, title, summary, poster, genres }}>
             <img src={poster} alt={title} title={title} />
         <div className="movie_data">
                 <h3 className="movie_title">
@@ -16,8 +18,9 @@ function Movie({title, year, summary, poster, genres}) {
                         return <li key={index} className="movie_genre">{genre}</li>
                     })}
                 </ul>
-        <p className="movie_summary">{summary}</p>
-        </div>
+        <p className="movie_summary">{summary.slice(0, 180)}...</p>
+                </div>
+                </Link>
     </div>
     );
 }
